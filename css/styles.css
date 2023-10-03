@@ -1,0 +1,100 @@
+:root {
+	--border-width: 2px;
+}
+* {
+	box-sizing: border-box;
+}
+body {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(rgba(0, 0, 0, 0.4), transparent .1vh), linear-gradient(90deg, rgba(0, 0, 0, .4), transparent .1vh);
+	background-size: 3.25vh 3.25vh;
+	row-gap: 20px;
+}
+.res {
+	position: fixed;
+	top: 10vh;
+
+	display: none;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	padding: 0.75rem 1.25rem;
+	border-radius: 16px;
+	box-shadow: 0 0 1rem #00000080;
+
+	background-color: white;
+}
+.res * {
+	color: black;
+	font-family: 'Inter', sans-serif;
+	font-weight: 500;
+	font-size: 18px;
+}
+.res > p {
+	margin: 0;
+	padding: 0;
+}
+.new-game {
+	border: none;
+	color: white;
+	background-color: #007bff;
+	padding: 0px 0px;
+	border-radius: 8px;
+	cursor: pointer;
+	margin-left: 16px;
+	padding: 8px 12px;
+	height: fit-content;
+	font-weight: 400;
+	&:hover {
+		opacity: .8;
+	}
+	&:active {
+		opacity: .5;
+	}
+}
+.game {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+.field {
+	width: 120px;
+	height: 120px;
+}
+.field:nth-child(3n - 1) {
+	border-left: var(--border-width) solid black;
+	border-right: var(--border-width) solid black;
+}
+.field:nth-child(n + 4):not(:nth-child(n + 7)) {
+	border-top: var(--border-width) solid black;
+	border-bottom: var(--border-width) solid black;
+}
+.field.active {
+	background-color: #20ff2060;
+}
+.circle {
+	width: 100%;
+	height: 100%;
+	stroke-dasharray: 283;
+	stroke-dashoffset: 283;
+	animation: draw .6s forwards;
+}
+@keyframes draw {
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+.cross > .first, .cross > .second {
+	stroke-dasharray: 128;
+	stroke-dashoffset: 128;
+}
+.cross > .first {
+	animation: draw .6s forwards;
+}
+.cross > .second {
+	animation: draw .6s .15s forwards;
+}
